@@ -244,6 +244,14 @@
         if(!confirm('This will add demo pins to your current list. Continue?')) return;
         window.App.importSample();
       });
+      // clear all pins
+      $('#btn-clear-all').on('click', function(){
+        if(!confirm('Clear all pins? This cannot be undone.')) return;
+        // clear storage and local state, then re-render
+        window.App.Storage.clearPins();
+        state.pins = [];
+        window.App.render();
+      });
       // modal close handlers
       $('#modal').on('click', '[data-action="close"], [data-action="cancel"], [data-close="overlay"]', function(e){
         closeModal();
